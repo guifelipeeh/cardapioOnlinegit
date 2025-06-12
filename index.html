@@ -1,228 +1,1347 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<style>
-    .footer{
+    <title>Sabor & Chama - Cardápio Online</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
         
-        background-color: rgb(0, 0, 0);
-        padding: 10px;
-        text-align: center;
-    }
-    *{
-        padding: 0;
-        margin: 0;
-    }
-    body{
-        background-color: rgb(146, 23, 23);
-        color: aliceblue;
-        font-family: Arial, Helvetica, sans-serif;
-    }
-    nav{
-        background-color: rgb(0, 0, 0);
-        padding: 10px;
-    }
-    nav ul{
-        list-style: none;
-    }
-    nav ul li{
-        display: inline-block;
-        margin-right: 10px;
-    }
-    nav ul li a{
-        color: aliceblue;
-        text-decoration: none;
-    }
-    .row{
-        display: flex;
-        flex-wrap: wrap;
-    }
-    .col{
-        flex: 1;
-        padding: 10px;
-    }
-    .card{
-        background-color: rgb(0, 0, 0);
-        border: 1px solid #ccc;
-        padding: 10px;
-        text-align: center;
-    }
-    .card img{
-        max-width: 100%;
-        height: auto;
-    }
-    main{
-        padding: 10px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-    }
-    header{
-        background-color: rgb(0, 0, 0);
-        padding: 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .container{
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-    }
-
-
-</style>
+        body {
+            background-color: #FFF5E0;
+            color: #5C2E0F;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+        
+        /* Cores quentes */
+        :root {
+            --primary: #FF6B35;
+            --secondary: #FF9F1C;
+            --dark: #5C2E0F;
+            --light: #FFF5E0;
+            --accent: #E71D36;
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 60px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            color: white;
+            font-size: 1.8rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+            position: relative;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        nav ul li a i {
+            margin-right: 8px;
+        }
+        
+        .cart-btn {
+            background-color: var(--dark);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .cart-btn:hover {
+            background-color: #3a1b09;
+            transform: scale(1.05);
+        }
+        
+        .cart-btn i {
+            margin-right: 8px;
+        }
+        
+        .cart-count {
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            margin-left: 8px;
+        }
+        
+        main {
+            padding: 30px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--dark);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+        
+        .menu-categories {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .category-btn {
+            background-color: white;
+            border: 2px solid var(--secondary);
+            color: var(--dark);
+            padding: 8px 20px;
+            margin: 0 10px 10px 0;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .category-btn.active, .category-btn:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -10px;
+        }
+        
+        .col {
+            flex: 0 0 calc(33.333% - 20px);
+            margin: 0 10px 20px;
+        }
+        
+        @media (max-width: 992px) {
+            .col {
+                flex: 0 0 calc(50% - 20px);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .col {
+                flex: 0 0 100%;
+            }
+            
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px;
+            }
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .card:hover .card-img img {
+            transform: scale(1.05);
+        }
+        
+        .card-body {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .card-text {
+            color: #777;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+        
+        .card-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .add-to-cart {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .add-to-cart:hover {
+            background-color: #e05a2b;
+        }
+        
+        .add-to-cart i {
+            margin-right: 8px;
+        }
+        
+        footer {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        .social-links {
+            margin: 15px 0;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--light);
+            transform: translateY(-3px);
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 50px auto;
+            max-width: 800px;
+            width: 90%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            animation: modalFadeIn 0.3s ease;
+        }
+        
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .modal-header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            transform: rotate(90deg);
+        }
+        
+        .modal-body {
+            padding: 20px;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+        
+        .cart-items {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .cart-items th {
+            text-align: left;
+            padding: 10px;
+            background-color: #f5f5f5;
+            color: var(--dark);
+        }
+        
+        .cart-items td {
+            padding: 15px 10px;
+            border-bottom: 1px solid #eee;
+            vertical-align: middle;
+        }
+        
+        .cart-item-img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        
+        .quantity-control {
+            display: flex;
+            align-items: center;
+        }
+        
+        .quantity-btn {
+            background-color: #f0f0f0;
+            border: none;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        
+        .quantity-input {
+            width: 40px;
+            text-align: center;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            padding: 3px;
+        }
+        
+        .remove-item {
+            color: var(--accent);
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        
+        .modal-footer {
+            padding: 15px 20px;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #eee;
+        }
+        
+        .cart-total {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .checkout-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .checkout-btn:hover {
+            background-color: #e05a2b;
+        }
+        
+        .checkout-btn i {
+            margin-right: 8px;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 30px;
+            color: #777;
+        }
+        
+        .empty-cart i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #ddd;
+        }
+        
+        /* Login Modal */
+        .login-form {
+            padding: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dark);
+            font-weight: 600;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            background-color: #e05a2b;
+        }
+        
+        .btn-secondary {
+            background-color: #f0f0f0;
+            color: var(--dark);
+            border: 1px solid #ddd;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #777;
+        }
+        
+        .form-footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        /* WhatsApp Checkout */
+        .whatsapp-checkout {
+            padding: 20px;
+        }
+        
+        .customer-info {
+            margin-bottom: 20px;
+        }
+        
+        .payment-methods {
+            margin-bottom: 20px;
+        }
+        
+        .payment-method {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .payment-method input {
+            margin-right: 10px;
+        }
+        
+        .delivery-options {
+            margin-bottom: 20px;
+        }
+        
+        .delivery-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .delivery-option input {
+            margin-right: 10px;
+        }
+        
+        .notes {
+            margin-bottom: 20px;
+        }
+        
+        .notes textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        /* Animação de login */
+        .login-toggle {
+            position: relative;
+            overflow: hidden;
+            border-radius: 30px;
+            width: 120px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-left: 15px;
+        }
+        
+        .login-toggle:hover {
+            background-color: #e05a2b;
+        }
+        
+        .login-text, .user-text {
+            position: absolute;
+            transition: all 0.3s ease;
+        }
+        
+        .user-text {
+            transform: translateY(40px);
+            opacity: 0;
+        }
+        
+        .logged-in .login-text {
+            transform: translateY(-40px);
+            opacity: 0;
+        }
+        
+        .logged-in .user-text {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .user-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+            width: 200px;
+            display: none;
+            z-index: 10;
+        }
+        
+        .user-menu a {
+            display: block;
+            padding: 8px 15px;
+            color: var(--dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .user-menu a:hover {
+            background-color: #f5f5f5;
+            color: var(--primary);
+        }
+        
+        .user-toggle:hover .user-menu {
+            display: block;
+        }
+    </style>
+</head>
 <body>
-
     <header>
-        <div class="logo">
-            <img src="logo.png" alt="Logo">
+        <div class="container header-content">
+            <div class="logo">
+                <img src="https://via.placeholder.com/60" alt="Sabor & Chama">
+                <h1>Sabor & Chama</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#" class="active"><i class="fas fa-utensils"></i> Cardápio</a></li>
+                    <li><a href="#"><i class="fas fa-glass-cheers"></i> Bebidas</a></li>
+                    <li><a href="#"><i class="fas fa-drumstick-bite"></i> Porções</a></li>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> Sobre</a></li>
+                    <li><a href="#"><i class="fas fa-phone-alt"></i> Contato</a></li>
+                </ul>
+            </nav>
+            <div style="display: flex; align-items: center;">
+                <button class="cart-btn" id="openCart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </button>
+                <div class="login-toggle" id="loginToggle">
+                    <span class="login-text">Login</span>
+                    <span class="user-text"><i class="fas fa-user"></i></span>
+                </div>
+            </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="cardapio.html">Cardápio</a></li>
-                <li><a href="contato.html">Contato</a></li>
-            </ul>
-        </nav>
     </header>
+    
     <main>
         <div class="container">
-          
-
+            <h2 class="section-title">Nosso Cardápio</h2>
+            
+            <div class="menu-categories">
+                <button class="category-btn active" data-category="all">Tudo</button>
+                <button class="category-btn" data-category="pratos">Pratos Principais</button>
+                <button class="category-btn" data-category="bebidas">Bebidas</button>
+                <button class="category-btn" data-category="porcoes">Porções</button>
+                <button class="category-btn" data-category="sobremesas">Sobremesas</button>
+            </div>
+            
             <div class="row">
-                <div class="col">
+                <!-- Prato 1 -->
+                <div class="col" data-category="pratos">
                     <div class="card">
-                        <h2>risoto</h2>
-                        <img src="risoto.jpg">
-                        <p>Cardápio de comida</p>
+                        <div class="card-img">
+                            <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Risoto de Cogumelos">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Risoto de Cogumelos</h3>
+                            <p class="card-text">Risoto cremoso com mix de cogumelos frescos, finalizado com parmesão e trufa.</p>
+                            <div class="card-price">R$ 42,90</div>
+                            <button class="add-to-cart" data-id="1" data-name="Risoto de Cogumelos" data-price="42.90" data-img="https://images.unsplash.com/photo-1559847844-5315695dadae?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80">
+                                <i class="fas fa-cart-plus"></i> Adicionar
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div class="col">
+                
+                <!-- Prato 2 -->
+                <div class="col" data-category="pratos">
                     <div class="card">
-                        <h2>Cardápio</h2>
-                         <img src="risoto.jpg">
-                        <p>Cardápio de comida</p>
+                        <div class="card-img">
+                            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Picanha Grelhada">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Picanha Grelhada</h3>
+                            <p class="card-text">Picanha premium grelhada no ponto perfeito, acompanha farofa e batata rustica.</p>
+                            <div class="card-price">R$ 59,90</div>
+                            <button class="add-to-cart" data-id="2" data-name="Picanha Grelhada" data-price="59.90" data-img="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80">
+                                <i class="fas fa-cart-plus"></i> Adicionar
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div class="col">
+                
+                <!-- Prato 3 -->
+                <div class="col" data-category="pratos">
                     <div class="card">
-                        <h2>Cardápio</h2>
-                         <img src="risoto.jpg">
-                        <p>Cardápio de comida</p>
+                        <div class="card-img">
+                            <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Moqueca de Peixe">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Moqueca de Peixe</h3>
+                            <p class="card-text">Tradicional moqueca capixaba com filé de peixe, camarão, dendê e leite de coco.</p>
+                            <div class="card-price">R$ 48,50</div>
+                            <button class="add-to-cart" data-id="3" data-name="Moqueca de Peixe" data-price="48.50" data-img="https://images.unsplash.com/photo-1565557623262-b51c2513a641?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80">
+                                <i class="fas fa-cart-plus"></i> Adicionar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bebida 1 -->
+                <div class="col" data-category="bebidas">
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="https://images.unsplash.com/photo-1551029506-0807df4e2031?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Caipirinha">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Caipirinha</h3>
+                            <p class="card-text">Tradicional caipirinha de cachaça com limão, açúcar e gelo.</p>
+                            <div class="card-price">R$ 18,90</div>
+                            <button class="add-to-cart" data-id="4" data-name="Caipirinha" data-price="18.90" data-img="https://images.unsplash.com/photo-1551029506-0807df4e2031?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80">
+                                <i class="fas fa-cart-plus"></i> Adicionar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bebida 2 -->
+                <div class="col" data-category="bebidas">
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Suco Natural">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Suco Natural</h3>
+                            <p class="card-text">Suco natural feito na hora (laranja, abacaxi, maracujá ou morango).</p>
+                            <div class="card-price">R$ 12,50</div>
+                            <button class="add-to-cart" data-id="5" data-name="Suco Natural" data-price="12.50" data-img="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80">
+                                <i class="fas fa-cart-plus"></i> Adicionar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Porção 1 -->
+                <div class="col" data-category="porcoes">
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="https://images.unsplash.com/photo-1562967914-608f82629710?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Batata Frita">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Batata Frita Crocante</h3>
+                            <p class="card-text">Porção generosa de batata frita crocante com cheddar e bacon.</p>
+                            <div class="card-price">R$ 28,90</div>
+                            <button class="add-to-cart" data-id="6" data-name="Batata Frita Crocante" data-price="28.90" data-img="https://images.unsplash.com/photo-1562967914-608f82629710?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80">
+                                <i class="fas fa-cart-plus"></i> Adicionar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Porção 2 -->
+                <div class="col" data-category="porcoes">
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Isca de Peixe">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Isca de Peixe</h3>
+                            <p class="card-text">Iscas de peixe empanadas e fritas, acompanha molho tártaro e limão.</p>
+                            <div class="card-price">R$ 35,50</div>
+                            <button class="add-to-cart" data-id="7" data-name="Isca de Peixe" data-price="35.50" data-img="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80">
+                                <i class="fas fa-cart-plus"></i> Adicionar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sobremesa 1 -->
+                <div class="col" data-category="sobremesas">
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Petit Gateau">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Petit Gateau</h3>
+                            <p class="card-text">Bolinho de chocolate com casca crocante e recheio cremoso, acompanha sorvete.</p>
+                            <div class="card-price">R$ 22,90</div>
+                            <button class="add-to-cart" data-id="8" data-name="Petit Gateau" data-price="22.90" data-img="https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80">
+                                <i class="fas fa-cart-plus"></i> Adicionar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sobremesa 2 -->
+                <div class="col" data-category="sobremesas">
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Cheesecake">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Cheesecake de Frutas</h3>
+                            <p class="card-text">Torta de cheesecake cremosa com calda de frutas vermelhas.</p>
+                            <div class="card-price">R$ 19,90</div>
+                            <button class="add-to-cart" data-id="9" data-name="Cheesecake de Frutas" data-price="19.90" data-img="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80">
+                                <i class="fas fa-cart-plus"></i> Adicionar
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
-                    <div class="card">
-                        <h2>risoto</h2>
-                        <img src="risoto.jpg">
-                        <p>Cardápio de comida</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <h2>Cardápio</h2>
-                         <img src="risoto.jpg">
-                        <p>Cardápio de comida</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <h2>Cardápio</h2>
-                         <img src="risoto.jpg">
-                        <p>Cardápio de comida</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="card">
-                        <h2>risoto</h2>
-                        <img src="risoto.jpg">
-                        <p>Cardápio de comida</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <h2>Cardápio</h2>
-                         <img src="risoto.jpg">
-                        <p>Cardápio de comida</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <h2>Cardápio</h2>
-                         <img src="risoto.jpg">
-                        <p>Cardápio de comida</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="card">
-                        <h2>risoto</h2>
-                        <img src="risoto.jpg">
-                        <p>Cardápio de comida</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <h2>Cardápio</h2>
-                         <img src="risoto.jpg">
-                        <p>Cardápio de comida</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <h2>Cardápio</h2>
-                         <img src="risoto.jpg">
-                        <p>Cardápio de comida</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="card">
-                        <h2>risoto</h2>
-                        <img src="risoto.jpg">
-                        <p>Cardápio de comida</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <h2>Cardápio</h2>
-                         <img src="risoto.jpg">
-                        <p>Cardápio de comida</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <h2>Cardápio</h2>
-                         <img src="risoto.jpg">
-                        <p>Cardápio de comida</p>
-                    </div>
-                </div>
-            </div>
-
-
-
         </div>
-
-
-
     </main>
-    <footer class="footer">
-        <p>&copy; 2023 Cardápio Online. Todos os direitos reservados.</p>
+    
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <p>&copy; 2023 Sabor & Chama. Todos os direitos reservados.</p>
+            <p>Rua das Delícias, 123 - Centro - (11) 98765-4321</p>
+        </div>
     </footer>
-
+    
+    <!-- Carrinho Modal -->
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fas fa-shopping-cart"></i> Seu Carrinho</h3>
+                <button class="close-btn" id="closeCart">&times;</button>
+            </div>
+            <div class="modal-body">
+                <table class="cart-items" id="cartItems">
+                    <!-- Itens do carrinho serão adicionados aqui via JavaScript -->
+                </table>
+                <div class="empty-cart" id="emptyCart">
+                    <i class="fas fa-shopping-basket"></i>
+                    <p>Seu carrinho está vazio</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="cart-total">Total: <span id="cartTotal">R$ 0,00</span></div>
+                <button class="checkout-btn" id="checkoutBtn">
+                    <i class="fab fa-whatsapp"></i> Finalizar Pedido
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fas fa-user"></i> Login</h3>
+                <button class="close-btn" id="closeLogin">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form class="login-form" id="loginForm">
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" class="form-control" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="registerBtn">Cadastrar</button>
+                        <button type="submit" class="btn btn-primary">Entrar</button>
+                    </div>
+                    <div class="form-footer">
+                        <p>Esqueceu sua senha? <a href="#">Clique aqui</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- WhatsApp Checkout Modal -->
+    <div class="modal" id="whatsappModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fab fa-whatsapp"></i> Finalizar Pedido</h3>
+                <button class="close-btn" id="closeWhatsapp">&times;</button>
+            </div>
+            <div class="modal-body whatsapp-checkout">
+                <div class="customer-info">
+                    <h4>Informações do Cliente</h4>
+                    <div class="form-group">
+                        <label for="customerName">Nome</label>
+                        <input type="text" id="customerName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customerPhone">Telefone</label>
+                        <input type="tel" id="customerPhone" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customerAddress">Endereço (para entrega)</label>
+                        <input type="text" id="customerAddress" class="form-control">
+                    </div>
+                </div>
+                
+                <div class="payment-methods">
+                    <h4>Forma de Pagamento</h4>
+                    <div class="payment-method">
+                        <input type="radio" id="pix" name="payment" value="PIX" checked>
+                        <label for="pix">PIX</label>
+                    </div>
+                    <div class="payment-method">
+                        <input type="radio" id="credit" name="payment" value="Cartão de Crédito">
+                        <label for="credit">Cartão de Crédito</label>
+                    </div>
+                    <div class="payment-method">
+                        <input type="radio" id="debit" name="payment" value="Cartão de Débito">
+                        <label for="debit">Cartão de Débito</label>
+                    </div>
+                    <div class="payment-method">
+                        <input type="radio" id="money" name="payment" value="Dinheiro">
+                        <label for="money">Dinheiro</label>
+                    </div>
+                </div>
+                
+                <div class="delivery-options">
+                    <h4>Opções de Entrega/Retirada</h4>
+                    <div class="delivery-option">
+                        <input type="radio" id="delivery" name="delivery" value="Entrega" checked>
+                        <label for="delivery">Entrega (taxa R$ 5,00)</label>
+                    </div>
+                    <div class="delivery-option">
+                        <input type="radio" id="pickup" name="delivery" value="Retirada">
+                        <label for="pickup">Retirar no local</label>
+                    </div>
+                </div>
+                
+                <div class="notes">
+                    <h4>Observações</h4>
+                    <textarea id="orderNotes" placeholder="Alguma observação sobre seu pedido?"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="backToCart">
+                    <i class="fas fa-arrow-left"></i> Voltar ao Carrinho
+                </button>
+                <button type="button" class="btn btn-primary" id="sendWhatsapp">
+                    <i class="fab fa-whatsapp"></i> Enviar Pedido
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Carrinho de compras
+        let cart = [];
+        let isLoggedIn = false;
+        
+        // Elementos do DOM
+        const openCartBtn = document.getElementById('openCart');
+        const closeCartBtn = document.getElementById('closeCart');
+        const cartModal = document.getElementById('cartModal');
+        const cartItemsEl = document.getElementById('cartItems');
+        const emptyCartEl = document.getElementById('emptyCart');
+        const cartTotalEl = document.getElementById('cartTotal');
+        const cartCountEl = document.querySelector('.cart-count');
+        const addToCartBtns = document.querySelectorAll('.add-to-cart');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const menuItems = document.querySelectorAll('.col');
+        
+        // Login elements
+        const loginToggle = document.getElementById('loginToggle');
+        const loginModal = document.getElementById('loginModal');
+        const closeLoginBtn = document.getElementById('closeLogin');
+        const loginForm = document.getElementById('loginForm');
+        const registerBtn = document.getElementById('registerBtn');
+        
+        // WhatsApp elements
+        const whatsappModal = document.getElementById('whatsappModal');
+        const closeWhatsappBtn = document.getElementById('closeWhatsapp');
+        const backToCartBtn = document.getElementById('backToCart');
+        const sendWhatsappBtn = document.getElementById('sendWhatsapp');
+        
+        // Abrir/fechar modais
+        openCartBtn.addEventListener('click', () => {
+            cartModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeCartBtn.addEventListener('click', () => {
+            cartModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        loginToggle.addEventListener('click', () => {
+            if (isLoggedIn) {
+                // Mostrar menu do usuário (seria implementado)
+                alert('Menu do usuário (em desenvolvimento)');
+            } else {
+                loginModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        });
+        
+        closeLoginBtn.addEventListener('click', () => {
+            loginModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        closeWhatsappBtn.addEventListener('click', () => {
+            whatsappModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        backToCartBtn.addEventListener('click', () => {
+            whatsappModal.style.display = 'none';
+            cartModal.style.display = 'block';
+        });
+        
+        // Fechar modal ao clicar fora
+        window.addEventListener('click', (e) => {
+            if (e.target === cartModal) {
+                cartModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+            if (e.target === loginModal) {
+                loginModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+            if (e.target === whatsappModal) {
+                whatsappModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Adicionar item ao carrinho
+        addToCartBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const id = btn.getAttribute('data-id');
+                const name = btn.getAttribute('data-name');
+                const price = parseFloat(btn.getAttribute('data-price'));
+                const img = btn.getAttribute('data-img');
+                
+                // Verificar se o item já está no carrinho
+                const existingItem = cart.find(item => item.id === id);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id,
+                        name,
+                        price,
+                        img,
+                        quantity: 1
+                    });
+                }
+                
+                updateCart();
+                
+                // Animação de adição ao carrinho
+                btn.innerHTML = '<i class="fas fa-check"></i> Adicionado';
+                btn.style.backgroundColor = '#4CAF50';
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-cart-plus"></i> Adicionar';
+                    btn.style.backgroundColor = '';
+                }, 1000);
+            });
+        });
+        
+        // Atualizar carrinho
+        function updateCart() {
+            // Atualizar contador
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCountEl.textContent = totalItems;
+            
+            // Atualizar lista de itens
+            if (cart.length === 0) {
+                emptyCartEl.style.display = 'block';
+                cartItemsEl.style.display = 'none';
+            } else {
+                emptyCartEl.style.display = 'none';
+                cartItemsEl.style.display = 'table';
+                
+                cartItemsEl.innerHTML = `
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Preço</th>
+                            <th>Quantidade</th>
+                            <th>Total</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${cart.map(item => `
+                            <tr>
+                                <td>
+                                    <div style="display: flex; align-items: center;">
+                                        <img src="${item.img}" alt="${item.name}" class="cart-item-img">
+                                        <span style="margin-left: 10px;">${item.name}</span>
+                                    </div>
+                                </td>
+                                <td>R$ ${item.price.toFixed(2)}</td>
+                                <td>
+                                    <div class="quantity-control">
+                                        <button class="quantity-btn minus" data-id="${item.id}">-</button>
+                                        <input type="number" class="quantity-input" value="${item.quantity}" min="1" data-id="${item.id}">
+                                        <button class="quantity-btn plus" data-id="${item.id}">+</button>
+                                    </div>
+                                </td>
+                                <td>R$ ${(item.price * item.quantity).toFixed(2)}</td>
+                                <td><i class="fas fa-trash remove-item" data-id="${item.id}"></i></td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                `;
+                
+                // Adicionar eventos aos botões de quantidade
+                document.querySelectorAll('.quantity-btn.minus').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const id = btn.getAttribute('data-id');
+                        const item = cart.find(item => item.id === id);
+                        if (item.quantity > 1) {
+                            item.quantity -= 1;
+                            updateCart();
+                        }
+                    });
+                });
+                
+                document.querySelectorAll('.quantity-btn.plus').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const id = btn.getAttribute('data-id');
+                        const item = cart.find(item => item.id === id);
+                        item.quantity += 1;
+                        updateCart();
+                    });
+                });
+                
+                document.querySelectorAll('.quantity-input').forEach(input => {
+                    input.addEventListener('change', () => {
+                        const id = input.getAttribute('data-id');
+                        const item = cart.find(item => item.id === id);
+                        const newQuantity = parseInt(input.value);
+                        if (newQuantity > 0) {
+                            item.quantity = newQuantity;
+                            updateCart();
+                        } else {
+                            input.value = item.quantity;
+                        }
+                    });
+                });
+                
+                document.querySelectorAll('.remove-item').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const id = btn.getAttribute('data-id');
+                        cart = cart.filter(item => item.id !== id);
+                        updateCart();
+                    });
+                });
+            }
+            
+            // Atualizar total
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotalEl.textContent = `R$ ${total.toFixed(2)}`;
+        }
+        
+        // Finalizar compra
+        checkoutBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+                alert('Seu carrinho está vazio!');
+                return;
+            }
+            
+            cartModal.style.display = 'none';
+            whatsappModal.style.display = 'block';
+        });
+        
+        // Enviar pedido por WhatsApp
+        sendWhatsappBtn.addEventListener('click', () => {
+            const name = document.getElementById('customerName').value;
+            const phone = document.getElementById('customerPhone').value;
+            const address = document.getElementById('customerAddress').value;
+            const payment = document.querySelector('input[name="payment"]:checked').value;
+            const delivery = document.querySelector('input[name="delivery"]:checked').value;
+            const notes = document.getElementById('orderNotes').value;
+            
+            if (!name || !phone) {
+                alert('Por favor, preencha pelo menos seu nome e telefone!');
+                return;
+            }
+            
+            // Formatar mensagem
+            let message = `Olá, gostaria de fazer um pedido!\n\n`;
+            message += `*Cliente:* ${name}\n`;
+            message += `*Telefone:* ${phone}\n`;
+            if (address) message += `*Endereço:* ${address}\n`;
+            message += `*Tipo de entrega:* ${delivery}\n`;
+            message += `*Pagamento:* ${payment}\n\n`;
+            message += `*Itens do pedido:*\n`;
+            
+            cart.forEach(item => {
+                message += `- ${item.name} (${item.quantity}x) - R$ ${(item.price * item.quantity).toFixed(2)}\n`;
+            });
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const deliveryFee = delivery === 'Entrega' ? 5 : 0;
+            const finalTotal = total + deliveryFee;
+            
+            message += `\n*Subtotal:* R$ ${total.toFixed(2)}\n`;
+            if (delivery === 'Entrega') message += `*Taxa de entrega:* R$ ${deliveryFee.toFixed(2)}\n`;
+            message += `*Total:* R$ ${finalTotal.toFixed(2)}\n\n`;
+            
+            if (notes) message += `*Observações:* ${notes}\n`;
+            
+            // Codificar mensagem para URL
+            const encodedMessage = encodeURIComponent(message);
+            
+            // Abrir WhatsApp
+            window.open(`https://wa.me/5511987654321?text=${encodedMessage}`, '_blank');
+            
+            // Limpar carrinho
+            cart = [];
+            updateCart();
+            whatsappModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            
+            // Resetar formulário
+            document.getElementById('customerName').value = '';
+            document.getElementById('customerPhone').value = '';
+            document.getElementById('customerAddress').value = '';
+            document.getElementById('orderNotes').value = '';
+        });
+        
+        // Filtro de categorias
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remover classe active de todos os botões
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                // Adicionar classe active ao botão clicado
+                btn.classList.add('active');
+                
+                const category = btn.getAttribute('data-category');
+                
+                menuItems.forEach(item => {
+                    if (category === 'all' || item.getAttribute('data-category') === category) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Login/Registro
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Simular login (em uma aplicação real, seria uma chamada AJAX)
+            if (email && password) {
+                isLoggedIn = true;
+                loginToggle.classList.add('logged-in');
+                loginModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                alert('Login realizado com sucesso!');
+            }
+        });
+        
+        registerBtn.addEventListener('click', () => {
+            alert('Página de cadastro (em desenvolvimento)');
+        });
+        
+        // Inicializar carrinho
+        updateCart();
+    </script>
 </body>
 </html>
